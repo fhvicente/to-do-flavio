@@ -20,7 +20,9 @@ export async function GET() {
 
 /** POST /api/tasks — creates a task and returns it with its generated id. */
 export async function POST(request: NextRequest) {
-	const parsed = createTaskSchema.safeParse(await request.json().catch(() => null));
+	const parsed = createTaskSchema.safeParse(
+		await request.json().catch(() => null),
+	);
 
 	if (!parsed.success) {
 		return NextResponse.json(

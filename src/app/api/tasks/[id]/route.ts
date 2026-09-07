@@ -37,7 +37,9 @@ export async function PATCH(request: NextRequest, { params }: RouteContext) {
 		return NextResponse.json({ error: "Invalid id" }, { status: 400 });
 	}
 
-	const parsed = updateTaskSchema.safeParse(await request.json().catch(() => null));
+	const parsed = updateTaskSchema.safeParse(
+		await request.json().catch(() => null),
+	);
 
 	if (!parsed.success) {
 		return NextResponse.json(
